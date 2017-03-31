@@ -1,0 +1,17 @@
+use LINE::Bot::API;
+use LINE::Bot::API::Builder::SendMessage;
+
+my $bot = LINE::Bot::API->new(
+    channel_secret       => "<channel secret>",
+    channel_access_token => "<channel access token>",
+);
+
+my $messages = LINE::Bot::API::Builder::SendMessage->new(
+)->add_text(
+    text => 'hello',
+);
+my $res = $bot->reply_message("<replyToken>", $messages->build);
+unless ($res->is_success) {
+    # error handling
+    ....
+}
